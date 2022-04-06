@@ -1,3 +1,4 @@
+import { getProducts } from "../src/Api";
 import ProductsComponent from "../src/Components/Products";
 
 const Home = (props) => {
@@ -5,13 +6,7 @@ const Home = (props) => {
 };
 
 Home.getInitialProps = async (ctx) => {
-  let product = await fetch("https://cv-builder-duyhp.herokuapp.com/products")
-    .then((res) => res.json())
-    .then((data) => {
-      if (data?.code === 200) {
-        return data?.data;
-      } else return [];
-    });
+  let product = await getProducts();
   return { product };
 };
 
